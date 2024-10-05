@@ -18,9 +18,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "@util/*": ["./src/util/*"],
+    },
+
   },
   "include": [
     "src"
-  ]
+, "src/SetMap.tsx"  ]
 }

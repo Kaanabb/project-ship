@@ -1,0 +1,4 @@
+class MyModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ship
+        fields = '__all__'
