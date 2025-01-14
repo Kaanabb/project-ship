@@ -43,7 +43,7 @@ def callAllData():
         raise Exception("Unable to find the document due to the following error: ", e)
     
 def callCoords():
-    client = MongoClient("mongodb://localhost:27017/")
+    client = MongoClient("localhost:27017")
     database=client.get_database("db_ship_wrecks")
     collection=database.get_collection("ship")
     # Sadece coordinates alanını içeren tüm belgeleri bulma
