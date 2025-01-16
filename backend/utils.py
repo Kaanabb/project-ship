@@ -10,6 +10,7 @@ from bson import ObjectId
 def callAllData():
 
     client = MongoClient("mongodb://localhost:27017/")
+    #client = MongoClient("mongodb://172.18.0.4:27017/")
     try:
             database=client.get_database("db_ship_wrecks")
             watlews=database.get_collection("ship")
@@ -43,7 +44,8 @@ def callAllData():
         raise Exception("Unable to find the document due to the following error: ", e)
     
 def callCoords():
-    client = MongoClient("localhost:27017")
+    client = MongoClient("mongodb://localhost:27017/")
+    #client = MongoClient("mongodb://172.18.0.4:27017/")
     database=client.get_database("db_ship_wrecks")
     collection=database.get_collection("ship")
     # Sadece coordinates alanını içeren tüm belgeleri bulma

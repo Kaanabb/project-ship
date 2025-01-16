@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    #command: gunicorn backend.wsgi:application --bind 0.0.0.0:8000
+    command: python manage.py runserver localhost:8000
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=0
+      - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0,*
+      - CORS_ALLOW_ALL_ORIGINS = True
+      #- CORS_ALLOWED_ORIGINS=http://localhost:3000,http://localhost:27017
+      - MONGO_URI=mongodb://mongodb:27017/
+      - CORS_ALLOW_CREDENTIALS=True
+      - CORS_ALLOW_ALL_ORIGINS=True 
+      - MONGODB_HOST=localhost
+      - MONGODB_PORT=27017
+      - MONGODB_NAME=db_ship_wrecks
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - WATCHPACK_POLLING=true  # Hot reload için
+      - CHOKIDAR_USEPOLLING=true  # Hot reload için
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

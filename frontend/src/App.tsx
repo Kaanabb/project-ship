@@ -1,13 +1,13 @@
-import React, {createContext,useContext, useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import '../node_modules/leaflet/dist/leaflet.css';
 import ListInfo from './ListInfo';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import PropTypes from "prop-types";
+
 //import { circle, marker } from 'leaflet';
 import L from 'leaflet';
-import { click } from '@testing-library/user-event/dist/click';
+//import { click } from '@testing-library/user-event/dist/click';
 var myIcon = L.icon({
   iconUrl: 'https://img.icons8.com/?size=100&id=2008&format=png&color=000000',
   iconSize: [25, 41],
@@ -143,5 +143,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

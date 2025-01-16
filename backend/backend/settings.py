@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,8 @@ SECRET_KEY = 'django-insecure-4l-bagvez6evv_ik_-%zt0==b1gp^wg%ruiyyoeus7d8ipr%l)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,0.0.0.0").split(",")
+ALLOWED_HOSTS = ['*']  
 
 
 # Application definition
@@ -82,6 +84,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'db_ship_wrecks',
+        'HOST': '172.18.0.4',
+        'PORT': 27017,
     }
 }
 
@@ -128,4 +132,9 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = os.environ.get(
+    "CORS_ALLOWED_ORIGINS",
+    "http://localhost:3000,http://localhost:27017"
+).split(",")
+
+CORS_ALLOW_CREDENTIALS = True
