@@ -13,7 +13,7 @@ pipeline {
         stage('Build') {
             steps {
                 dir('frontend') {
-                    bat 'npm test -- --watchAll=false'
+                    bat 'npm test --watchAll=false'
                 }
             }
         }
