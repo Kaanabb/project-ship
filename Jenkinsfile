@@ -5,7 +5,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 dir('frontend') {
-                    sh 'npm install --force'
+                    bat 'npm install --force'
                 }
             }
         }
@@ -13,7 +13,7 @@ pipeline {
         stage('Build') {
             steps {
                 dir('frontend') {
-                    sh 'npm run build'
+                    bat 'npm start'
                 }
             }
         }
