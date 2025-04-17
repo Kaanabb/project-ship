@@ -1,10 +1,23 @@
 pipeline {
     agent any
+
     stages {
-        stage('Build') { 
+        stage('Install Dependencies') {
             steps {
-                bat 'npm install --force' 
+                dir('frontend') {
+                    sh 'npm install'
+                }
             }
         }
+        
+        stage('Build') {
+            steps {
+                dir('frontend') {
+                    sh 'npm run build'
+                }
+            }
+        }
+        
+        // Add more stages as needed
     }
 }
